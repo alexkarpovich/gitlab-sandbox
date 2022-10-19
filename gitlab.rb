@@ -86,12 +86,12 @@ external_url 'https://gitlab.akarpovich.online'
 gitlab_rails['smtp_enable'] = true
 gitlab_rails['smtp_address'] = "email-smtp.us-west-2.amazonaws.com"
 gitlab_rails['smtp_port'] = 587
-gitlab_rails['smtp_user_name'] = "AKIAX43SML5BBABNYSUD"
-gitlab_rails['smtp_password'] = "BBiWftuv2OYVI3ufMk02c00xomp7b5QlmeztRrtuTmc3"
+gitlab_rails['smtp_user_name'] = File.read('/run/secrets/ses_user_name').gsub("\n", "")
+gitlab_rails['smtp_password'] = File.read('/run/secrets/ses_password').gsub("\n", "")
 gitlab_rails['smtp_domain'] = "akarpovich.online"
 gitlab_rails['smtp_authentication'] = "login"
 gitlab_rails['smtp_enable_starttls_auto'] = true
-# gitlab_rails['smtp_tls'] = false
+# gitlab_rails['smtp_tls'] = falsek
 # gitlab_rails['smtp_pool'] = false
 
 ###! **Can be: 'none', 'peer', 'client_once', 'fail_if_no_peer_cert'**

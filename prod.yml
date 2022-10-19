@@ -18,14 +18,23 @@ services:
         target: /omnibus_config.rb
     secrets:
       - gitlab_root_password
+      - ses_user_name
+      - ses_password
+        
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
     deploy:
       mode: replicated
       replicas: 1
+      
 configs:
   gitlab:
     file: ./gitlab.rb
+
 secrets:
   gitlab_root_password:
     file: ./root_password.txt
+  ses_user_name:
+    file: ./ses_user_name.txt
+  ses_user_name:
+    file: ./ses_password.txt
