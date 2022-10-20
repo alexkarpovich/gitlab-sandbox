@@ -780,7 +780,7 @@ gitlab_rails['initial_root_password'] = File.read('/run/secrets/gitlab_root_pass
 ##! Docs: https://docs.gitlab.com/ee/administration/packages/container_registry.html
 ################################################################################
 
-registry_external_url 'https://registry.akarpovich.online'
+# registry_external_url 'https://registry.akarpovich.online'
 
 ### Settings used by GitLab application
 # gitlab_rails['registry_enabled'] = true
@@ -1405,7 +1405,7 @@ registry_external_url 'https://registry.akarpovich.online'
 ##! Docs: https://docs.gitlab.com/omnibus/settings/nginx.html
 ################################################################################
 
-nginx['enable'] = true
+nginx['enable'] = false
 nginx['client_max_body_size'] = '250m'
 nginx['redirect_http_to_https'] = false
 # nginx['redirect_http_to_https_port'] = 80
