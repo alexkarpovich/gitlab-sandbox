@@ -36,5 +36,5 @@ secrets:
     external: true
   ses_user_name:
     external: true
-  ses_user_name:
+  ses_password:
     external: true
