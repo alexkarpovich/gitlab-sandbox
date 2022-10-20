@@ -13,8 +13,26 @@ services:
     shm_size: '256m'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        letsencrypt['enable'] = true
         external_url 'https://gitlab.akarpovich.online'
+
+        letsencrypt['enable'] = true
+        letsencrypt['contact_emails'] = ['alexsure.k@gmail.com']
+        letsencrypt['auto_renew'] = true
+        letsencrypt['auto_renew_hour'] = "12"
+        letsencrypt['auto_renew_minute'] = "30"
+        letsencrypt['auto_renew_day_of_month'] = "*/7"
+
+        gitlab_rails['smtp_enable'] = true
+        gitlab_rails['smtp_address'] = "email-smtp.us-west-2.amazonaws.com"
+        gitlab_rails['smtp_port'] = 587
+        gitlab_rails['smtp_user_name'] = ${SMTP_USER_NAME}
+        gitlab_rails['smtp_password'] = ${SMTP_PASSWORD}
+        gitlab_rails['smtp_domain'] = "akarpovich.online"
+        gitlab_rails['smtp_authentication'] = "login"
+        gitlab_rails['smtp_enable_starttls_auto'] = true
+        gitlab_rails['gitlab_email_from'] = 'root@akarpovich.com'
+
+        gitlab_rails['initial_root_password'] = ${INITIAL_ROOT_PASSWORD}
         
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
