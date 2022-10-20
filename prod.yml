@@ -13,24 +13,19 @@ services:
     shm_size: '256m'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        gitlab_rails['smtp_enable'] = false
-        gitlab_rails['smtp_address'] = 'mail.redacted.com'
+        gitlab_rails['smtp_enable'] = true
+        gitlab_rails['smtp_address'] = 'email-smtp.us-west-2.amazonaws.com'
         gitlab_rails['smtp_port'] = 587
         gitlab_rails['smtp_user_name'] = File.read('/run/secrets/ses_user_name').gsub("\n", "")
         gitlab_rails['smtp_password'] = File.read('/run/secrets/ses_password').gsub("\n", "")
-        gitlab_rails['smtp_domain'] = 'redacted.com'
+        gitlab_rails['smtp_domain'] = 'akarpovich.online'
         gitlab_rails['smtp_authentication'] = 'login'
         gitlab_rails['smtp_enable_starttls_auto'] = true
         gitlab_rails['gitlab_root_email'] = 'admin@akarpovich.online'
         gitlab_rails['initial_root_password'] = File.read('/run/secrets/gitlab_root_password').gsub("\n", "")
         # HTTPS Setup
-        letsencrypt['enable'] = false
+        letsencrypt['enable'] = true
         external_url 'https://gitlab.akarpovich.online'
-        # gitlab_rails['gitlab_https'] = true
-        # gitlab_rails['gitlab_port'] = 443
-    # configs:
-    #  - source: gitlab
-    #    target: /omnibus_config.rb
     secrets:
       - gitlab_root_password
       - ses_user_name
@@ -38,6 +33,8 @@ services:
         
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
+    volumes:
+      - ./config.toml:/etc/gitlab-runner/config.toml  
     deploy:
       mode: replicated
       replicas: 1
