@@ -4,7 +4,7 @@ init: init_sshd_config init_firewall install_docker
 
 init_sshd_config:
 	sudo sed -i '/# Port 22/c\Port 2222' /etc/ssh/sshd_config
-	sudo systemclt restart ssh
+	sudo systemctl restart ssh
 
 init_firewall:
 	sudo ufw enable && \
