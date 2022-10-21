@@ -1,12 +1,17 @@
-.PHONY: init init_firewall install_docker
+.PHONY: init init_sshd_config init_firewall install_docker
 
-init: init_firewall install_docker
+init: init_sshd_config init_firewall install_docker
+
+init_sshd_config:
+	sudo sed -i '/# Port 22/c\Port 2222' /etc/ssh/sshd_config
+	sudo systemclt restart ssh
 
 init_firewall:
 	sudo ufw enable && \
 	sudo ufw allow https && \
 	sudo ufw allow http && \
 	sudo ufw allow ssh && \
+	sudo ufw allow 2222 && \
 	sudo ufw reload
 
 install_docker:
