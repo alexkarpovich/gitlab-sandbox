@@ -3,7 +3,7 @@
 init: init_sshd_config init_firewall install_docker
 
 init_sshd_config:
-	sudo sed -i '/# Port 22/c\Port 2222' /etc/ssh/sshd_config
+	sudo sed -i 's/#Port 22/Port 2222/g' /etc/ssh/sshd_config
 	sudo systemctl restart ssh
 
 init_firewall:

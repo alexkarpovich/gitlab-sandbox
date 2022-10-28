@@ -22,6 +22,7 @@ services:
         letsencrypt['auto_renew_minute'] = "30"
         letsencrypt['auto_renew_day_of_month'] = "*/7"
 
+        gitlab_rails['initial_root_password'] = "${INITIAL_ROOT_PASSWORD}"
         gitlab_rails['smtp_enable'] = true
         gitlab_rails['smtp_address'] = "email-smtp.us-west-2.amazonaws.com"
         gitlab_rails['smtp_port'] = 587
