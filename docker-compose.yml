@@ -24,7 +24,7 @@ services:
 
         gitlab_rails['initial_root_password'] = "${INITIAL_ROOT_PASSWORD}"
         gitlab_rails['smtp_enable'] = true
-        gitlab_rails['smtp_address'] = "email-smtp.us-west-2.amazonaws.com"
+        gitlab_rails['smtp_address'] = "email-smtp.us-east-1.amazonaws.com"
         gitlab_rails['smtp_port'] = 587
         gitlab_rails['smtp_user_name'] = "${SMTP_USER_NAME}"
         gitlab_rails['smtp_password'] = "${SMTP_PASSWORD}"
