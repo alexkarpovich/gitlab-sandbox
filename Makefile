@@ -12,6 +12,7 @@ init_firewall:
 	sudo ufw allow http && \
 	sudo ufw allow ssh && \
 	sudo ufw allow 2222 && \
+	sudo ufw allow 587 && \
 	sudo ufw reload
 
 install_docker:
