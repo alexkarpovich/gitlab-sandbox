@@ -6,6 +6,7 @@ services:
       - "22:22"
       - "80:80"
       - "443:443"
+      - "587:587"
     volumes:
       - $GITLAB_HOME/data:/var/opt/gitlab
       - $GITLAB_HOME/logs:/var/log/gitlab
